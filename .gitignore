@@ -1,0 +1,38 @@
+# ================= UNITY =================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# Generated lighting / occlusion
+**/LightingData.asset
+**/OcclusionCullingData.asset
+**/ReflectionProbe-*
+
+# Terrain & scene cache
+**/*.unity.lock
+**/*.terrainlayer
+
+# ================= BUILDS / INSTALLERS =================
+інсталятори/
+*.exe
+*.app
+*.dmg
+*.zip
+
+# ================= BIG ART SOURCES =================
+*.psd
+*.tif
+*.tga
+*.fbx
+*.blend
+
+# ================= JSON EXPORTS =================
+export-*.json
+
+# ================= OS =================
+.DS_Store
+Thumbs.db
