@@ -6,29 +6,35 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
       with:
         lfs: true
 
-    # 🔐 АКТИВАЦІЯ UNITY PERSONAL
-    - name: Activate Unity License
+    # 🔐 АКТИВАЦІЯ UNITY PERSONAL (Linux OK)
+    - name: Activate Unity
       uses: game-ci/unity-activate@v2
       env:
         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
-    # 🏗 БІЛД
-    - name: Build
+    # 🏗 БІЛД macOS
+    - name: Build macOS
       uses: game-ci/unity-builder@v4
       with:
         unityVersion: 2022.3.27f1
         targetPlatform: StandaloneOSX
 
-    # 🧹 ДЕАКТИВАЦІЯ (ВАЖЛИВО)
-    - name: Return Unity License
+    # 📦 АРТЕФАКТ
+    - name: Upload build
+      uses: actions/upload-artifact@v4
+      with:
+        name: mac-build
+        path: build/StandaloneOSX
+
+    # 🧹 ДЕАКТИВАЦІЯ
+    - name: Return license
       if: always()
       uses: game-ci/unity-return-license@v2
